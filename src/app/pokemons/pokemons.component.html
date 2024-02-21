@@ -1,0 +1,47 @@
+<!-- pokemons.component.html -->
+
+<div class="container">
+    <hr />
+    <h1>Práctica 10</h1>
+    <hr />
+    <h2>Los pokemons que tenemos en el array: </h2>
+    <hr />
+    <div class="columns">
+        <div class="column">
+            <!-- Muestra la cantidad de pokemons en el array -->
+            <p>En el orden del array: </p>
+            <p> {{cuenta}} Pokémons en el array</p>
+            <!-- Muestra el nombre del pokemon seleccionado si hay uno -->
+            <p *ngIf="pokemonSeleccionado">El pokemon seleccionado es: {{pokemonSeleccionado}}</p>
+        </div>
+    </div>
+
+    <!-- Creamos el formulario para buscar los pokemons -->
+    <form>
+        <div class="field has-addons">
+            <div class="control has-icons-left">
+                <!-- Input para escribir el nombre del pokemon a buscar -->
+                <input class="input is-small" name="pokemonBusca" type="text" placeholder="Nombre del pokemon"
+                    [(ngModel)]="formBuscarPokemon.nombre" (keyup)="buscar(formBuscarPokemon.nombre)">
+            </div>
+            <div class="control">
+                <!-- Botón para iniciar la búsqueda -->
+                <a class="button is-primary is-small" (click)="buscar(formBuscarPokemon.nombre)"> Buscar </a>
+            </div>
+            <div class="control">
+                <!-- Botón para cancelar la búsqueda -->
+                <a class="button is-light is-small" (click)="cancelarBuscar()"> Cancelar </a>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Hacemos un diseño para mostrar los datos -->
+    <div class="columns is-multiline">
+        <!-- Recorremos el array para mostrar los pokemons con sus datos -->
+        <div class="column is-one-third" *ngFor="let pokemon of pokemon">
+            <!-- Utilizamos el componente 'app-pokemon' para mostrar los datos de cada pokemon -->
+            <app-pokemon [pokemon]=pokemon (eventoClicImagen)="pokemonSeleccionado = $event"></app-pokemon>
+        </div>
+    </div>
+</div>

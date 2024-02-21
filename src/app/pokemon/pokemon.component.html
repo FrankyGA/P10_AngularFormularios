@@ -1,0 +1,15 @@
+<!-- pokemon.component.html -->
+
+<!--Código del componente hijo-->
+<ul class="menu-list">
+    <!--Colocamos los datos en cada fila, usando if con la plantilla por si no tiene datos asignados-->
+    <!--Añadimos el evento en la imagen del pokemon. El clic en la imagen de un
+    pokemon será un evento que el hijo volverá al padre-->
+    <img src="{{pokemon.imagen}}" (click)="clickEnImagen()" />
+    <li>Nombre: {{pokemon.nombre}}</li>
+    <li>Categoría: {{ pokemon.categoria }}</li>
+    <li>Tipo: {{ pokemon.tipo }}</li>
+    <li>Talla: <span *ngIf="pokemon.talla; else na">{{pokemon.talla}}</span></li>
+    <li>Peso: <span *ngIf="pokemon.peso; else na">{{pokemon.peso}}</span></li>
+    <ng-template #na>N/A</ng-template>
+</ul>
